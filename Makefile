@@ -1,7 +1,6 @@
-ROOTDIR		:= $(CURDIR)/
+include common.mk
 
 BINDIR		:= $(ROOTDIR)bin/
-INCLUDEDIR	:= $(ROOTDIR)include/
 OBJDIR		:= $(ROOTDIR)obj/
 SRCDIR		:= $(ROOTDIR)src/
 
@@ -10,8 +9,6 @@ TGT		 := $(BINDIR)$(EXE_NAME)
 SRC		 := $(shell find $(SRCDIR) -name '*.c' -type f)
 OBJ		 := $(patsubst $(SRCDIR)%.c, $(OBJDIR)%.o, $(SRC))
 
-CC		 ?= gcc
-INCLUDES := -I$(INCLUDEDIR) -I$(SRCDIR)
 CFLAGS	 := -std=c18 -Wall $(INCLUDES)
 LDFLAGS	 :=
 
