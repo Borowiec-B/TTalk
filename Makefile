@@ -14,6 +14,7 @@ CFLAGS	 := -std=c18 -Wall $(INCLUDES)
 LDFLAGS	 :=
 
 .DEFAULT_GOAL := all
+.PHONY : clean 
 
 
 all : $(TGT)

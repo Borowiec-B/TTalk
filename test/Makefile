@@ -38,6 +38,7 @@ TESTINCLUDES := -I$(INCLUDEDIR) -I$(TESTSRCDIR) -I$(TESTFRAMEWORKDIR)
 TESTCFLAGS	 := -std=c18 -Wall $(TESTINCLUDES)
 
 .DEFAULT_GOAL : all
+.PHONY		  : clean run_tests
 
 all : run_tests
 
