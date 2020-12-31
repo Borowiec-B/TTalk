@@ -18,13 +18,12 @@ LDFLAGS	 :=
 all : $(TGT)
 
 $(TGT) : $(OBJ) | $(BINDIR)
-	$(CC) $(CFLAGS) $^ -o "$@" $(LDFLAGS)
+	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
 
 $(OBJ) : $(OBJDIR)%.o : $(SRCDIR)%.c | $(OBJDIR)
-	@# This is not going to work with spaces in paths.
 	mkdir -p $(dir $@)
-	$(CC) -c $(CFLAGS) "$<" -o "$@"
+	$(CC) -c $(CFLAGS) $< -o $@
 
 $(BINDIR) $(OBJDIR) :
-	mkdir -p "$@"
+	mkdir -p $@
 
