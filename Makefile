@@ -28,3 +28,6 @@ $(OBJ) : $(OBJDIR)%.o : $(SRCDIR)%.c | $(OBJDIR)
 $(BINDIR) $(OBJDIR) :
 	mkdir -p $@
 
+
+clean :
+	rm -r $(OBJDIR) $(BINDIR)
