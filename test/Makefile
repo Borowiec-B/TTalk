@@ -21,9 +21,9 @@ TESTSRC := $(shell find $(TESTSRCDIR) -name '*.c' -type f)
 TESTTGT := $(patsubst $(TESTSRCDIR)%.c, $(TESTBUILDBINDIR)%,	 $(TESTSRC))
 TESTTXT := $(patsubst $(TESTSRCDIR)%.c, $(TESTBUILDTXTDIR)%.txt, $(TESTSRC))
 
-IGNOREDRESULTSCMD := grep -s IGNORE $(TESTTXTDIR)*.txt
-FAILINGRESULTSCMD := grep -s FAIL $(TESTTXTDIR)*.txt
-PASSINGRESULTSCMD := grep -s PASS $(TESTTXTDIR)*.txt
+IGNOREDRESULTSCMD := grep --no-filename --no-messages IGNORE $(TESTTXTDIR)*.txt
+FAILINGRESULTSCMD := grep --no-filename --no-messages FAIL $(TESTTXTDIR)*.txt
+PASSINGRESULTSCMD := grep --no-filename --no-messages PASS $(TESTTXTDIR)*.txt
 
 TESTINCLUDES := -I$(INCLUDEDIR) -I$(TESTSRCDIR) -I$(TESTFRAMEWORKDIR)
 TESTCFLAGS	 := -std=c18 -Wall $(TESTINCLUDES)
