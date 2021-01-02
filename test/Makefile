@@ -1,7 +1,7 @@
 ROOTDIR ?= $(CURDIR)/../
 TESTDIR	:= $(CURDIR)/
 
-# common.mk stores some of main target's variables ($(CC), $(INCLUDEDIR), $(LIBDIR), ...).
+# common.mk stores some of main target's variables ($(CC), $(INCLUDEDIR), $(LDFLAGS), $(LIBDIR), ...).
 include $(ROOTDIR)common.mk
 
 # Binaries and object files are to be output somewhere under build/,
@@ -36,6 +36,7 @@ PASSINGRESULTSCMD := grep --no-filename --no-messages PASS $(TESTTXTDIR)*.txt
 
 TESTINCLUDES := -I$(INCLUDEDIR) -I$(TESTSRCDIR) -I$(TESTFRAMEWORKDIR)
 TESTCFLAGS	 := -std=c18 -Wall $(TESTINCLUDES)
+TESTLDFLAGS	 := $(LDFLAGS)
 
 .DEFAULT_GOAL : all
 .PHONY		  : clean run_tests
@@ -65,7 +66,7 @@ $(TESTTGT) : $(TESTBUILDTGT) | $(TESTBINDIR)
 
 $(TESTBUILDTGT) : $(TESTBUILDBINDIR)% : $(TESTBUILDOBJDIR)%.o $(TESTFRAMEWORKOBJ)
 	mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
+	$(CC) $(CFLAGS) $^ -o $@ $(TESTLDFLAGS)
 
 $(TESTBUILDOBJDIR)%.o : $(TESTSRCDIR)%.c
 	mkdir -p $(dir $@)
