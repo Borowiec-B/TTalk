@@ -13,6 +13,7 @@ include $(ROOTDIR)common.mk
 #
 # Example of complete process for a result file:
 # src/A/B/test.c -> build/obj/A/B/test.o -> build/bin/A/B/test -> (move/copy to) bin/test -> (write results to) txt/test.txt
+
 TESTBINDIR		:= $(TESTDIR)bin/
 TESTSRCDIR		:= $(TESTDIR)src/
 TESTTXTDIR		:= $(TESTDIR)txt/
