@@ -32,3 +32,4 @@ $(BINDIR) $(OBJDIR) :
 
 clean :
 	-rm -r $(OBJDIR) $(BINDIR) 2>/dev/null
+
