@@ -11,7 +11,7 @@ OBJ		 := $(patsubst $(SRCDIR)%.c, $(OBJDIR)%.o, $(SRC))
 
 INCLUDES := -I$(INCLUDEDIR) -I$(SRCDIR)
 CFLAGS	 := -std=c18 -Wall $(INCLUDES)
-LDFLAGS	 :=
+LDFLAGS	 +=
 
 .DEFAULT_GOAL := all
 .PHONY : clean 
