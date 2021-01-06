@@ -10,8 +10,8 @@ SRC		 := $(shell find $(SRCDIR) -name '*.c' -type f)
 OBJ		 := $(patsubst $(SRCDIR)%.c, $(OBJDIR)%.o, $(SRC))
 
 INCLUDES := -I$(INCLUDEDIR) -I$(SRCDIR)
-CFLAGS	 := -std=c18 -Wall $(INCLUDES)
-LDFLAGS	 +=
+CFLAGS	 := $$(pkg-config --cflags gtk4) -std=c18 -Wall $(INCLUDES)
+LDFLAGS	 += $$(pkg-config --libs gtk4)
 
 .DEFAULT_GOAL := all
 .PHONY : clean 
