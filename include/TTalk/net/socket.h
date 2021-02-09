@@ -21,6 +21,8 @@ struct TT_TCPSocket {
 	int fd;
 };
 
+void TT_TCPSocket_init(struct TT_TCPSocket* const s);
+
 
 #endif
 
