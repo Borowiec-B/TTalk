@@ -1,7 +1,6 @@
 include common.mk
 
 BINDIR		:= $(ROOTDIR)bin/
-OBJDIR		:= $(ROOTDIR)obj/
 SRCDIR		:= $(ROOTDIR)src/
 
 EXE_NAME := TTalk
