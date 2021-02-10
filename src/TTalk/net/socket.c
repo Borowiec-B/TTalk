@@ -7,25 +7,25 @@
 #include <sys/socket.h>
 #include <sys/types.h>
 
-static bool addrinfo_is_ip(const struct addrinfo* const ai) {
+bool addrinfo_is_ip(const struct addrinfo* const ai) {
 	assert(ai);
 
 	return ((ai->ai_family == AF_INET) || (ai->ai_family == AF_INET6));
 }
 
-static bool addrinfo_is_tcp(const struct addrinfo* const ai) {
+bool addrinfo_is_tcp(const struct addrinfo* const ai) {
 	assert(ai);
 
 	return (ai->ai_socktype == SOCK_STREAM);
 }
 
-static bool addrinfo_is_tcpip(const struct addrinfo* const ai) {
+bool addrinfo_is_tcpip(const struct addrinfo* const ai) {
 	assert(ai);
 
 	return (addrinfo_is_ip(ai) && addrinfo_is_tcp(ai));
 }
 
-static struct addrinfo* find_first_tcpip_addrinfo(const struct addrinfo* const linked_list) {
+struct addrinfo* find_first_tcpip_addrinfo(const struct addrinfo* const linked_list) {
 	assert(linked_list);
 
 	const struct addrinfo* checked_addrinfo = &linked_list[0];

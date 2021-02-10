@@ -21,6 +21,11 @@ struct TT_TCPSocket {
 	int fd;
 };
 
+bool addrinfo_is_ip(const struct addrinfo* const ai);
+bool addrinfo_is_tcp(const struct addrinfo* const ai);
+bool addrinfo_is_tcpip(const struct addrinfo* const ai);
+struct addrinfo* find_first_tcpip_addrinfo(const struct addrinfo* const linked_list);
+
 void TT_TCPSocket_init(struct TT_TCPSocket* const s);
 
 
