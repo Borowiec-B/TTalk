@@ -1,6 +1,7 @@
 #include "TTalk/net/address.h"
 
 #include <netdb.h>
+#include <stdlib.h>
 #include <sys/socket.h>
 #include <sys/types.h>
 
@@ -33,10 +34,20 @@ void test_addrinfo_is_family(void) {
 					 !TT_addrinfo_is_tcpip(&addrinfo_unix));
 }
 
+void test_find_first_tcpip_addrinfo(void) {
+	struct addrinfo fourth_node = { .ai_family = AF_UNIX };
+	struct addrinfo third_node = { .ai_family = AF_INET6, .ai_socktype = SOCK_STREAM, .ai_next = &fourth_node };
+	struct addrinfo second_node = { .ai_family = AF_INET, .ai_socktype = SOCK_DGRAM, .ai_next = &third_node };
+	struct addrinfo first_node = { .ai_family = AF_UNIX, .ai_socktype = SOCK_STREAM, .ai_next = &second_node };
+
+	TEST_ASSERT_TRUE(TT_find_first_tcpip_addrinfo(&first_node) == &third_node);
+}
+
 int main(void) {
 	UNITY_BEGIN();
 
 	RUN_TEST(test_addrinfo_is_family);
+	RUN_TEST(test_find_first_tcpip_addrinfo);
 
 	return UNITY_END();
 }
