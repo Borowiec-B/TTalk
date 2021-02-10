@@ -1,6 +1,8 @@
 #include "TTalk/net/address.h"
 
+#include <arpa/inet.h>
 #include <assert.h>
+#include <errno.h>
 #include <netdb.h>
 #include <stddef.h>
 #include <sys/socket.h>
@@ -39,3 +41,35 @@ struct addrinfo* TT_find_first_tcpip_addrinfo(const struct addrinfo* const linke
 
 	return checked_addrinfo;
 }
+
+TT_Status TT_sockaddr_ip_to_str(const struct sockaddr* const sa, char* buf, const socklen_t buf_size) {
+	assert(sa && buf);
+
+	if (sa->sa_family == AF_INET) {
+		struct sockaddr_in* sin = (struct sockaddr_in*)sa;
+
+		if (!inet_ntop(AF_INET, &sin->sin_addr.s_addr, buf, buf_size))
+			goto handle_ntop_error;
+
+		return TT_STATUS_SUCCESS;
+	} else if (sa->sa_family == AF_INET6) {
+		struct sockaddr_in6* sin6 = (struct sockaddr_in6*)sa;
+
+		if (!inet_ntop(AF_INET6, &sin6->sin6_addr, buf, buf_size))
+			goto handle_ntop_error;
+
+		return TT_STATUS_SUCCESS;
+	} else {
+		// sa->family is invalid.
+		return TT_STATUS_INVALID_ARG;
+	}
+
+handle_ntop_error:
+	if (errno == EAFNOSUPPORT)
+		return TT_STATUS_INVALID_ARG;
+	else if (errno == ENOSPC)
+		return TT_STATUS_BUFFER_OVERFLOW;
+	else
+		return TT_STATUS_ERROR;
+}
+
