@@ -1,0 +1,11 @@
+#ifndef TT_STATUS_H
+#define TT_STATUS_H
+
+typedef enum TT_StatusTag {
+	TT_STATUS_SUCCESS,
+	TT_STATUS_INVALID_ARG,
+	TT_STATUS_OUT_OF_MEMORY,
+	TT_STATUS_ERROR
+} TT_Status;
+
+#endif
