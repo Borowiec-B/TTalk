@@ -27,10 +27,10 @@ bool TT_addrinfo_is_tcpip(const struct addrinfo* const ai) {
 	return (TT_addrinfo_is_ip(ai) && TT_addrinfo_is_tcp(ai));
 }
 
-struct addrinfo* TT_find_first_tcpip_addrinfo(const struct addrinfo* const linked_list) {
-	assert(linked_list);
+struct addrinfo* TT_find_first_tcpip_addrinfo(const struct addrinfo* const node) {
+	assert(node);
 
-	const struct addrinfo* checked_addrinfo = &linked_list[0];
+	const struct addrinfo* checked_addrinfo = &node[0];
 
 	while (!TT_addrinfo_is_tcpip(checked_addrinfo)) {
 		if (!checked_addrinfo->ai_next)
