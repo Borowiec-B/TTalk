@@ -2,6 +2,7 @@
 
 LIBDIR	 	:= $(ROOTDIR)lib/
 INCLUDEDIR	:= $(ROOTDIR)include/
+OBJDIR		:= $(ROOTDIR)obj/
 
 CC		 ?= gcc
 LDFLAGS	 :=
