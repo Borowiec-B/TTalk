@@ -10,7 +10,7 @@
 static bool addrinfo_is_ip(const struct addrinfo* const ai) {
 	assert(ai);
 
-	return ((ai->ai_protocol == AF_INET) || (ai->ai_protocol == AF_INET6));
+	return ((ai->ai_family == AF_INET) || (ai->ai_family == AF_INET6));
 }
 
 static bool addrinfo_is_tcp(const struct addrinfo* const ai) {
