@@ -18,6 +18,7 @@ struct TT_Address {
 bool TT_addrinfo_is_ip(const struct addrinfo* const ai);
 bool TT_addrinfo_is_tcp(const struct addrinfo* const ai);
 bool TT_addrinfo_is_tcpip(const struct addrinfo* const ai);
+TT_Status TT_ip_family_str_length(const int family, size_t* const ret);
 
 /*
  *  TT_find_first_tcpip_addrinfo(): Return pointer to first found node with a TCP/IP sockaddr, or NULL if not found.

@@ -27,6 +27,23 @@ bool TT_addrinfo_is_tcpip(const struct addrinfo* const ai) {
 	return (TT_addrinfo_is_ip(ai) && TT_addrinfo_is_tcp(ai));
 }
 
+TT_Status TT_ip_family_str_length(const int family, size_t* const ret) {
+	assert(ret);
+
+	if (family == AF_INET) {
+		*ret = 16;
+
+		return TT_STATUS_SUCCESS;
+	}
+	else if (family == AF_INET6) {
+		*ret = INET6_ADDRSTRLEN;
+
+		return TT_STATUS_SUCCESS;
+	} else {
+		return TT_STATUS_INVALID_ARG;
+	}
+}
+
 struct addrinfo* TT_find_first_tcpip_addrinfo(const struct addrinfo* const node) {
 	assert(node);
 
