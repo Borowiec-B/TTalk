@@ -11,8 +11,8 @@ struct addrinfo;
 
 struct TT_Address {
 	struct sockaddr_storage ss;
-	const char* ip;
-	const char* port;
+	char* ip;
+	char* port;
 };
 
 bool TT_addrinfo_is_ip(const struct addrinfo* const ai);
