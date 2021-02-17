@@ -24,6 +24,7 @@ TT_Status TT_ip_family_str_length(const int family, size_t* const ret);
  *  TT_find_first_tcpip_addrinfo(): Return pointer to first found node with a TCP/IP sockaddr, or NULL if not found.
  */
 struct addrinfo* TT_find_first_tcpip_addrinfo(const struct addrinfo* const node);
-TT_Status TT_sockaddr_ip_to_str(const struct sockaddr* const sa, char* buf, const socklen_t buf_size);
+TT_Status TT_sockaddr_ip_to_str(const struct sockaddr* const sa, char* const buf, const socklen_t buf_size);
 
 #endif
+
