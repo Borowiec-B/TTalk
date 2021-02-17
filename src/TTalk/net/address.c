@@ -82,9 +82,7 @@ TT_Status TT_sockaddr_ip_to_str(const struct sockaddr* const sa, char* buf, cons
 	}
 
 handle_ntop_error:
-	if (errno == EAFNOSUPPORT)
-		return TT_STATUS_INVALID_ARG;
-	else if (errno == ENOSPC)
+	if (errno == ENOSPC)
 		return TT_STATUS_BUFFER_OVERFLOW;
 	else
 		return TT_STATUS_ERROR;
