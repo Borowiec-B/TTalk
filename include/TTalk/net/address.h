@@ -26,5 +26,7 @@ TT_Status TT_ip_family_str_length(const int family, size_t* const ret);
 struct addrinfo* TT_find_first_tcpip_addrinfo(const struct addrinfo* const node);
 TT_Status TT_sockaddr_ip_to_str(const struct sockaddr* const sa, char* const buf, const socklen_t buf_size);
 
+TT_Status TT_Address_init_from_hostname(struct TT_Address* const addr, const char* const hostname, const char* const port);
+
 #endif
 
